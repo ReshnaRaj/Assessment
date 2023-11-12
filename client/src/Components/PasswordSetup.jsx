@@ -8,7 +8,7 @@ const PasswordSetup = () => {
       <div>
           <img
             src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699521091/ff_u43duh.jpg"
-            alt="image"
+            alt=""
             className="w-[500px] h-full hidden rounded-none md:block object-cover"
           />
         </div>

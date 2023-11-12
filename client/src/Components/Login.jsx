@@ -8,7 +8,7 @@ const Login = () => {
         <div>
           <img
             src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699521091/ff_u43duh.jpg"
-            alt="image"
+            alt=""
             className="w-[500px] h-full hidden rounded-none md:block object-cover"
           />
         </div>
@@ -21,7 +21,7 @@ const Login = () => {
           <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6">
             <img
               src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699504998/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1_xuxzmz.png"
-              alt="img"
+              alt=""
               className="w-6 h-6 inline mr-2 "
             />
             Continue with Google

@@ -53,17 +53,24 @@ const ServiceFee = () => {
                 <h2 className="text-2xl mb-4 text-center">Payment Method</h2>
                 <div className="flex  justify-around ">
                   <img
-                    src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699638527/im1_xr2ley.jpg"
+                    src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699638527/im1_xr2ley.jpg" alt=""
                     className="h-52 w-96"
                   />
                   <img
-                    src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699638694/im2_hiog6s.jpg"
+                    src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699638694/im2_hiog6s.jpg" alt=""
                     className="h-52 w-96"
                   />
                 </div>
               </div>
               <div className="flex flex-wrap justify-around">
-                <img src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699639457/Credit-Card-Icons_rwqg8p.jpg" alt="" className="h-32 w-60"/>
+                <div className="join mt-5">
+                  <button className="btn join-item btn-info">Visa</button>
+                  <button className="btn join-item btn-success">G-Pay</button>
+                  <button className="btn join-item btn-primary">Paypal</button>
+                  <button className="btn join-item">Button</button>
+                  <button className="btn join-item">Button</button>
+                  <button className="btn join-item">Button</button>
+                </div>
               </div>
 
               <div style={{ display: "flex", gap: "65rem" }}>
