@@ -8,35 +8,36 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const navigate=useNavigate()  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (!name || !email || !phone || !password) {
       alert("Please fill in all required fields");
       return;
     }
+  
     try {
-      const { data } = await axios.post(
-        "http://localhost:4000/signup",
-        {
-          name,
-          email,
-          phone,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      if(data){
-        navigate('/otp')
+      
+      const response = await axios.post("http://localhost:4000/register", {
+        name: name,
+        email: email,
+        password: password,
+        phone: phone,
+      });
+      console.log(response,"reponse daatta")
+  
+      if (response.data.status === 'success') {
+        navigate('/otp',{ state: { phone: phone } });
       }
-      console.log(data, "data of the user");
     } catch (error) {
-      console.log(error, "error ");
+      console.error("An error occurred:", error);
+      // Handle the error or show a user-friendly message
     }
   };
-  const navigate=useNavigate()
+  
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
