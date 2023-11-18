@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import otpInput from 'otp-input-react'
 
 const Login = () => {
   return (
@@ -16,6 +17,7 @@ const Login = () => {
           <span className="mb-2 text-3xl font-semibold">
             Login Into your Account
           </span>
+        
           <span className="mb-3">See What is going on with your business</span>
           <span className="font-ligt text-gray-400 mb-3"></span>
           <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6">
@@ -26,6 +28,7 @@ const Login = () => {
             />
             Continue with Google
           </button>
+          <otpInput></otpInput>
           <button className="w-full border border-gray-300 text-md p-2 rounded-lg mb-6">
             <img
               src="https://res.cloudinary.com/dsyln8j3g/image/upload/v1699513294/fb-logo_cskggn.jpg"

@@ -1,37 +1,71 @@
 import React, { useState } from "react";
- 
- 
-import axios from 'axios';
-import { useNavigate ,useLocation} from "react-router-dom";
+
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { auth } from "../Firebase/firebaseconfig";
+import { RecaptchaVerifier, } from "firebase/auth";
 
 const Otp = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const phone = location.state.phone || "";
-  
- const sendOTP= async()=>{
-  try {
-    const otpString=otp.join("")
-    console.log(otpString,"ppp")
-    if(otp.length<6 || otp=== ""){
-      alert('invalid entry')
+
+  function onCaptchVerify() {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: () => {
+            onSignup();
+          },
+          "expired-callback": () => {},
+        },
+        auth
+      );
     }
-    else{
-      const response=await axios.post('http://localhost:4000/verify-otp',{
-        otp:otpString
-      })
-      alert('Sending OTP:'+otpString)
-      console.log(response,"response")
-      if(response.data.success){
-        alert(response.data.message)
-        navigate('/email')
-      }
-    }
-  } catch (error) {
-    
   }
- }
+
+  const onSignup = async () => {
+    onCaptchVerify();
+    const appVerifier = window.recaptchaVerifier;
+    const formatPh = "+" + 91 + phone;
+    try {
+      signInWithPhoneNumber(auth, formatPh, appVerifier)
+        .then((confirmationResult) => {
+          window.confirmationResult = confirmationResult;
+          console.log(confirmationResult);
+          alert("OTP sended successfully!");
+        })
+        .catch((error) => {
+          console.log("hdbsjhfbs");
+          console.log(error);
+          alert("some error occur..!");
+        });
+    } catch (error) {}
+  };
+
+  const sendOTP = async () => {
+    try {
+      const otpString = otp.join("");
+      console.log(otpString, "ppp");
+      if (otp.length < 6 || otp === "") {
+        alert("invalid entry");
+      } else {
+        const response = await axios.post("http://localhost:4000/verify-otp", {
+          otp: otpString,
+        });
+        alert("Sending OTP:" + otpString);
+        console.log(response, "response");
+        if (response.data.success) {
+          alert(response.data.message);
+          navigate("/email");
+        }
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -45,9 +79,7 @@ const Otp = () => {
         </div>
         <div className="flex flex-col justify-center p-8 md:p-14">
           <span className="mb-2 text-2xl font-semibold">OTP Verification</span>
-          <span>
-            Enter the verification code we just sent to your {phone}
-          </span>
+          <span>Enter the verification code we just sent to your {phone}</span>
 
           <div className="flex mt-4">
             {otp.map((value, index) => (

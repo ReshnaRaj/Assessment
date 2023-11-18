@@ -114,6 +114,7 @@ const Signup = () => {
                   <span className="font-bold text-black ml-2">Login</span>
                 </button>
               </Link>
+              
             </div>
           </form>
         </div>
