@@ -28,7 +28,7 @@ const Signup = () => {
       });
       console.log(response,"reponse daatta")
   
-      if (response.data.status === 'success') {
+      if (response.data.otpSend) {
         navigate('/otp',{ state: { phone: phone } });
       }
     } catch (error) {
